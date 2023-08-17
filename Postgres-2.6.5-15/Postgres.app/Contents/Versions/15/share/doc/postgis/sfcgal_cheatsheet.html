@@ -1,0 +1,302 @@
+<html><head><title>PostGIS SFCGAL Cheat Sheet</title>
+	<style type="text/css">
+<!--
+table { page-break-inside:avoid; page-break-after:auto }
+tr    { page-break-inside:avoid; page-break-after:avoid }
+thead { display:table-header-group }
+tfoot { display:table-footer-group }
+body {
+	font-family: Arial, sans-serif;
+	font-size: 8.5pt;
+}
+@media print { a , a:hover, a:focus, a:active{text-decoration: none;color:black} }
+@media screen { a , a:hover, a:focus, a:active{text-decoration: underline} }
+.comment {font-size:x-small;color:green;font-family:"courier new"}
+.notes {font-size:x-small;color:red}
+#example_heading {
+	border-bottom: 1px solid #000;
+	margin: 10px 15px 10px 85px;
+	color: #00d
+}
+
+#content_functions {
+	float: left;
+	width:100%;
+}
+
+#content_examples {
+	float: left;
+	width: 100%;
+}
+
+.section {
+	border: 1px solid #000; float:left;
+	margin: 4px;width: 100%;	}
+.section th {
+	border: 1px solid #000;
+	color: #fff;
+	background-color: #b63300;
+	font-size: 9.5pt;
+
+}
+.section td {
+	font-family: Arial, sans-serif;
+	font-size: 8.5pt;
+	vertical-align: top;
+	border: 0;
+}
+
+.func {font-weight: 600}
+.func {font-weight: 600}
+.func_args {font-size: 7.5pt;font-family:courier;}
+.func_args ol {margin: 2px}
+.func_args ol li {margin: 5px}
+
+.evenrow {
+	background-color: #eee;
+}
+
+.oddrow {
+	background-color: #fff;
+}
+
+h1 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 14pt;
+}
+
+-->
+</style>
+	</head><body><h1 style='text-align:center'>PostGIS 3.3 PostGIS SFCGAL Cheatsheet</h1><table class="section"><tr><th colspan="2"></th></tr>
+	
+		
+				
+          SFCGAL is a C++ wrapper library around CGAL that provides advanced 2D and 3D spatial functions.
+          For robustness, geometry coordinates have an exact rational number representation.
+        
+        
+          Installation instructions for the library can be found on the SFCGAL home page (http://www.sfcgal.org).
+          To enable the functions use create extension postgis_sfcgal.
+        
+
+		
+	
+	SFCGAL Functions
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/postgis_sfcgal_version.html" target="_blank">postgis_sfcgal_version</a></span><sup>3D</sup> 
+ 			()
+		
+
+ 		&nbsp;&nbsp;
+ 		Returns the version of SFCGAL in use
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/postgis_sfcgal_full_version.html" target="_blank">postgis_sfcgal_full_version</a></span><sup>1</sup> <sup>3D</sup> 
+ 			()
+		
+
+ 		&nbsp;&nbsp;
+ 		Returns the full version of SFCGAL in use including CGAL and Boost versions
+ 		</td></tr>
+	
+
+    
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_3DArea.html" target="_blank">ST_3DArea</a></span><sup>mm</sup> <sup>3D</sup> 
+ 			(geom1)
+		
+
+ 		&nbsp;&nbsp;
+ 		Computes area of 3D surface geometries.  Will return 0 for solids.
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_3DConvexHull.html" target="_blank">ST_3DConvexHull</a></span><sup>1</sup> <sup>3D</sup> 
+ 			(geom1)
+		
+
+ 		&nbsp;&nbsp;
+ 		Computes the 3D convex hull of a geometry.
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_3DIntersection.html" target="_blank">ST_3DIntersection</a></span><sup>mm</sup> <sup>3D</sup> 
+ 			(geom1, geom2)
+		
+
+ 		&nbsp;&nbsp;
+ 		Perform 3D intersection
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_3DDifference.html" target="_blank">ST_3DDifference</a></span><sup>mm</sup> <sup>3D</sup> 
+ 			(geom1, geom2)
+		
+
+ 		&nbsp;&nbsp;
+ 		Perform 3D difference
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_3DUnion.html" target="_blank">ST_3DUnion</a></span><sup>1</sup> <sup>mm</sup> <sup>3D</sup> 
+
+ 		&nbsp;&nbsp;
+ 		Perform 3D union.<span class='func_args'><ol><li>geom1, geom2</li><li>g1field</li>
+ 		</ol></span>
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_AlphaShape.html" target="_blank">ST_AlphaShape</a></span><sup>1</sup> 
+ 			(geom, alpha, allow_holes = false)
+		
+
+ 		&nbsp;&nbsp;
+ 		Computes a possible concave geometry using the CGAL Alpha Shapes algorithm.
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_ApproximateMedialAxis.html" target="_blank">ST_ApproximateMedialAxis</a></span><sup>3D</sup> 
+ 			(geom)
+		
+
+ 		&nbsp;&nbsp;
+ 		Compute the approximate medial axis of an areal geometry.
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_ConstrainedDelaunayTriangles.html" target="_blank">ST_ConstrainedDelaunayTriangles</a></span><sup>3D</sup> 
+ 			(g1)
+		
+
+ 		&nbsp;&nbsp;
+ 		
+Return a constrained Delaunay triangulation around the given input geometry.
+			
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_Extrude.html" target="_blank">ST_Extrude</a></span><sup>3D</sup> 
+ 			(geom, x, y, z)
+		
+
+ 		&nbsp;&nbsp;
+ 		Extrude a surface to a related volume
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_ForceLHR.html" target="_blank">ST_ForceLHR</a></span><sup>3D</sup> 
+ 			(geom)
+		
+
+ 		&nbsp;&nbsp;
+ 		Force LHR orientation
+ 		</td></tr>
+	
+
+    
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_IsPlanar.html" target="_blank">ST_IsPlanar</a></span><sup>3D</sup> 
+ 			(geom)
+		
+
+ 		&nbsp;&nbsp;
+ 		Check if a surface is or not planar
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_IsSolid.html" target="_blank">ST_IsSolid</a></span><sup>3D</sup> 
+ 			(geom1)
+		
+
+ 		&nbsp;&nbsp;
+ 		Test if the geometry is a solid. No validity check is performed.
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_MakeSolid.html" target="_blank">ST_MakeSolid</a></span><sup>3D</sup> 
+ 			(geom1)
+		
+
+ 		&nbsp;&nbsp;
+ 		Cast the geometry into a solid. No check is performed. To obtain a valid solid, the input geometry must be a closed Polyhedral Surface or a closed TIN.
+ 		</td></tr>
+	
+
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_MinkowskiSum.html" target="_blank">ST_MinkowskiSum</a></span>
+ 			(geom1, geom2)
+		
+
+ 		&nbsp;&nbsp;
+ 		Performs Minkowski sum
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_OptimalAlphaShape.html" target="_blank">ST_OptimalAlphaShape</a></span><sup>1</sup> 
+ 			(param_geom, allow_holes = false, nb_components)
+		
+
+ 		&nbsp;&nbsp;
+ 		Computes a possible concave geometry using the CGAL Alpha Shapes algorithm after have computed the "optimal" alpha value.
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_Orientation.html" target="_blank">ST_Orientation</a></span><sup>3D</sup> 
+ 			(geom)
+		
+
+ 		&nbsp;&nbsp;
+ 		Determine surface orientation
+ 		</td></tr>
+	
+
+    
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_StraightSkeleton.html" target="_blank">ST_StraightSkeleton</a></span><sup>3D</sup> 
+ 			(geom)
+		
+
+ 		&nbsp;&nbsp;
+ 		Compute a straight skeleton from a geometry
+ 		</td></tr>
+	
+
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_Tesselate.html" target="_blank">ST_Tesselate</a></span><sup>3D</sup> 
+ 			(geom)
+		
+
+ 		&nbsp;&nbsp;
+ 		Perform surface Tesselation of a polygon or polyhedralsurface and returns as a TIN or collection of TINS
+ 		</td></tr>
+	
+
+	
+ 		<tr class="evenrow" ><td colspan='2'><span class='func'><a href="https://postgis.net/docs/manual-3.3/ST_Volume.html" target="_blank">ST_Volume</a></span><sup>mm</sup> <sup>3D</sup> 
+ 			(geom1)
+		
+
+ 		&nbsp;&nbsp;
+ 		Computes the volume of a 3D solid. If applied to surface (even closed) geometries will return 0.
+ 		</td></tr>
+	
+
+
+
+	 	</table>
+			</div><div id="content_examples"></div></body></html>

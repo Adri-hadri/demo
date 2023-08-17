@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-@Service 
+@Service
 public class StudentService { // this class has be instatiated with bean @Component
     public List<Student> getStudents() {
         return List.of(

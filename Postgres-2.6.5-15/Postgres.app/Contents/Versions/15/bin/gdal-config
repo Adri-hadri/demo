@@ -1,0 +1,74 @@
+#!/bin/sh
+CONFIG_LIBS="-L/Applications/Postgres.app/Contents/Versions/15/lib -lgdal"
+CONFIG_DEP_LIBS="-ljson-c -L/Applications/Postgres.app/Contents/Versions/15/lib -L/Applications/Postgres.app/Contents/Versions/15/lib -lSFCGAL -L/Applications/Postgres.app/Contents/Versions/15/lib -lopenjp2 -L/Applications/Postgres.app/Contents/Versions/15 -L/Applications/Postgres.app/Contents/Versions/15/lib -lpng -L/Applications/Postgres.app/Contents/Versions/15/lib -lpq -llz4 -lzstd -L/Applications/Postgres.app/Contents/Versions/15/lib -lproj  -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -lsqlite3 -ltiff -L/Applications/Postgres.app/Contents/Versions/15 -L/Applications/Postgres.app/Contents/Versions/15/lib -ljpeg -lz -lpthread -ldl    -lcurl        -liconv        "
+CONFIG_PREFIX="/Applications/Postgres.app/Contents/Versions/15"
+CONFIG_CFLAGS="-I/Applications/Postgres.app/Contents/Versions/15/include"
+CONFIG_DATA="/Applications/Postgres.app/Contents/Versions/15/share/gdal"
+CONFIG_VERSION="3.5.3"
+CONFIG_OGR_ENABLED=yes
+CONFIG_GNM_ENABLED=yes
+CONFIG_FORMATS="derived gtiff hfa mem vrt  aaigrid adrg aigrid airsar arg blx bmp bsb cals ceos ceos2 coasp cosar ctg dimap dted elas envisat ers esric fit gff gsg gxf hf2 idrisi ilwis iris iso8211 jaxapalsar jdem kmlsuperoverlay l1b leveller map mrf msgn ngsgeoid nitf northwood pds prf r raw rmf rs2 safe saga sdts sentinel2 sgi sigdem srtmhgt stacit stacta terragen tga til tsx usgsdem xpm xyz zarr zmap rik ozi eeda plmosaic wcs wms wmts daas ogcapi rasterlite mbtiles grib pdf openjpeg gif png pcraster jpeg  pcidsk postgisraster"
+usage()
+{
+	cat <<EOF
+Usage: gdal-config [OPTIONS]
+Options:
+	[--prefix[=DIR]]
+	[--libs]
+	[--dep-libs]
+	[--cflags]
+	[--datadir]
+	[--version]
+	[--ogr-enabled]
+	[--gnm-enabled]
+	[--formats]
+EOF
+	exit $1
+}
+
+if test $# -eq 0; then
+	usage 1 1>&2
+fi
+
+case $1 in
+  --libs)
+    echo $CONFIG_LIBS
+    ;;
+
+  --dep-libs)
+    echo $CONFIG_DEP_LIBS
+    ;;
+
+  --cflags)
+    echo $CONFIG_CFLAGS
+    ;;
+
+  --datadir)
+    echo $CONFIG_DATA
+    ;;
+
+  --prefix)
+    echo $CONFIG_PREFIX
+    ;;
+
+  --version)
+    echo $CONFIG_VERSION
+    ;;
+
+  --ogr-enabled)
+    echo yes
+    ;;
+
+  --gnm-enabled)
+    echo $CONFIG_GNM_ENABLED
+    ;;
+
+  --formats)
+    echo $CONFIG_FORMATS
+    ;;
+
+  *)
+    usage 1 1>&2
+    ;;
+
+esac
